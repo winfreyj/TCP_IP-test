@@ -1,0 +1,6 @@
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\bin\Debug\TCP_IP.exe.config
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\bin\Debug\TCP_IP.exe
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\bin\Debug\TCP_IP.pdb
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.csprojResolveAssemblyReference.cache
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.exe
+c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.pdb
