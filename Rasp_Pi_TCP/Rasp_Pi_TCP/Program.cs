@@ -23,10 +23,10 @@ namespace Rasp_Pi_TCP
             Socket PC = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // IP address of Raspberry Pi 1
-            IPAddress IP = IPAddress.Parse(""); // Insert PC IP address
+            IPAddress IP = IPAddress.Parse("169.254.224.199"); // PC IP address 169.254.224.199
 
             // IP endpoint for connection
-            IPEndPoint EndPoint_1 = new IPEndPoint(IP, 8080); // Change 8080 to Pi's port number
+            IPEndPoint EndPoint_1 = new IPEndPoint(IP, 139); // PC's port number 139
 
             // Binds the socket to the IPEndPoint
             PC.Bind(EndPoint_1);
