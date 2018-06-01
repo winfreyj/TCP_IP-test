@@ -93,12 +93,12 @@ namespace TCP_IP
                 variables[i] = (int)packet[i];
             }
             Console.WriteLine("Data:");
-            Console.WriteLine("Camera:    %d", variables[0]);
-            Console.WriteLine("Motor:     %d", variables[1]);
-            Console.WriteLine("Direction: %d", variables[2]);
-            Console.WriteLine("Steps:     %d", variables[3]);
-            Console.WriteLine("Position:  %d", variables[4]);
-            Console.WriteLine("Complete:  %d", variables[5]);
+            Console.WriteLine("Camera:    {0}", variables[0]);
+            Console.WriteLine("Motor:     {0}", variables[1]);
+            Console.WriteLine("Direction: {0}", variables[2]);
+            Console.WriteLine("Steps:     {0}", variables[3]);
+            Console.WriteLine("Position:  {0}", variables[4]);
+            Console.WriteLine("Complete:  {0}", variables[5]);
         }
 
         public static void SendData(IAsyncResult callback)
