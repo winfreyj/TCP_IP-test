@@ -50,10 +50,51 @@ namespace TCP_IP
              * packet[5] = complete bit
             */
             byte[] packet = new byte[6];
+            for(int i=0; i<6; i++)
+            {
+                packet[i] = (byte)variables[i];
+            }
+
+            // Attepting to send data packet to Raspberry Pi
+            Console.WriteLine("Sending data packet to the Raspberry Pi.");
+            try
+            {
+                RaspPi_1.BeginSend(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(SendData), RaspPi_1);
+            }
+            catch(SocketException sockExcept)
+            {
+                Console.WriteLine(sockExcept.ErrorCode.ToString());
+            }
+
+            // Attempting to receive data packet from Raspberry Pi
+            Console.WriteLine("Receiveing data packet from the Raspberry Pi.");
+            try
+            {
+                RaspPi_1.BeginReceive(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(ReceiveData), RaspPi_1);
+            }
+            catch(SocketException sockExcept)
+            {
+                Console.WriteLine(sockExcept.ErrorCode.ToString());
+            }
 
             // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
+        }
+
+        // Callback function for canceling the data receive state
+        public static void ReceiveData(IAsyncResult callback)
+        {
+            Socket tempSocket = (Socket)callback.AsyncState;    // Temporary socket for ending the data receiving phase
+            int dataReceived = tempSocket.EndReceive(callback); // Ends the data receiving phase on tempSocket
+            Console.WriteLine("Data received.");                // Writes to the console that the data has been received
+        }
+
+        public static void SendData(IAsyncResult callback)
+        {
+            Socket tempSocket = (Socket)callback.AsyncState; // Temporary socket for ending the data sending phase
+            int dataSent = tempSocket.EndSend(callback);     // Ends the data sending phase on tempSocket
+            Console.WriteLine("Data sent.");                 // Writes to the console that the data has been sent
         }
     }
 }
