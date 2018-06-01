@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Rasp_Pi_TCP",
+    "\\Rasp_Pi_TCP\\Rasp_Pi_TCP",
+    "\\TCP_IP"
   ],
-  "SelectedNode": "\\TCP_IP.sln",
+  "SelectedNode": "\\Rasp_Pi_TCP\\Rasp_Pi_TCP\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
