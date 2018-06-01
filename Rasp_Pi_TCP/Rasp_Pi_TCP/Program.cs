@@ -65,7 +65,19 @@ namespace Rasp_Pi_TCP
                 Console.WriteLine(sockExcept.ErrorCode.ToString());
             }
 
+            int[] temp = variables;
 
+            temp[0] = 0;
+            temp[1] = 0;
+            temp[2] = 0;
+            temp[3] = 0;
+            temp[4] = 250;
+            temp[5] = 1;
+
+            for(int i=0; i<6; i++)
+            {
+                packet[i] = (byte)temp[i];
+            }
 
             // Attepting to send data packet to the PC
             Console.WriteLine("Sending data packet to the PC.");
@@ -93,6 +105,7 @@ namespace Rasp_Pi_TCP
             {
                 variables[i] = (int)packet[i];
             }
+            Console.WriteLine("Data:");
             Console.WriteLine("Camera:    %d", variables[0]);
             Console.WriteLine("Motor:     %d", variables[1]);
             Console.WriteLine("Direction: %d", variables[2]);
