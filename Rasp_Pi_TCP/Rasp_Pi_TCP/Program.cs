@@ -10,6 +10,9 @@ namespace Rasp_Pi_TCP
 {
     class Program
     {
+        private static int[] variables = new int[6];
+        private static byte[] packet = new byte[6];
+
         static void Main(string[] args)
         {
             Console.WriteLine("TCP_IP Test.");
@@ -17,19 +20,19 @@ namespace Rasp_Pi_TCP
             Console.WriteLine("Setting up connection to Raspberry Pi.");
 
             // Creates the socket for communication
-            Socket RaspPi_1 = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket PC = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
             // IP address of Raspberry Pi 1
-            IPAddress IP_1 = IPAddress.Parse(""); // Insert Pi IP address
+            IPAddress IP = IPAddress.Parse(""); // Insert PC IP address
 
             // IP endpoint for connection
-            IPEndPoint EndPoint_1 = new IPEndPoint(IP_1, 8080); // Change 8080 to Pi's port number
+            IPEndPoint EndPoint_1 = new IPEndPoint(IP, 8080); // Change 8080 to Pi's port number
 
             // Binds the socket to the IPEndPoint
-            RaspPi_1.Bind(EndPoint_1);
+            PC.Bind(EndPoint_1);
 
             // Connects to the IPEndPoint
-            RaspPi_1.Connect(EndPoint_1);
+            PC.Connect(EndPoint_1);
 
             /* Creating packet information array
              * varaibles[0] = selected camera bit
@@ -39,7 +42,7 @@ namespace Rasp_Pi_TCP
              * varaibles[4] = assumed postion bit
              * varaibles[5] = complete bit
             */
-            int[] variables = { 1, 6, -1, 250, 0, 0 };
+            // int[] variables = new int[6];
 
             /* Creating packet information array
              * packet[0] = selected camera bit
@@ -49,28 +52,26 @@ namespace Rasp_Pi_TCP
              * packet[4] = assumed postion bit
              * packet[5] = complete bit
             */
-            byte[] packet = new byte[6];
-            for (int i = 0; i < 6; i++)
-            {
-                packet[i] = (byte)variables[i];
-            }
+            // byte[] packet = new byte[6];
 
-            // Attepting to send data packet to Raspberry Pi
-            Console.WriteLine("Sending data packet to the Raspberry Pi.");
+            // Attempting to receive data packet from the PC
+            Console.WriteLine("Receiveing data packet from the PC.");
             try
             {
-                RaspPi_1.BeginSend(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(SendData), RaspPi_1);
+                PC.BeginReceive(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(ReceiveData), PC);
             }
             catch (SocketException sockExcept)
             {
                 Console.WriteLine(sockExcept.ErrorCode.ToString());
             }
 
-            // Attempting to receive data packet from Raspberry Pi
-            Console.WriteLine("Receiveing data packet from the Raspberry Pi.");
+
+
+            // Attepting to send data packet to the PC
+            Console.WriteLine("Sending data packet to the PC.");
             try
             {
-                RaspPi_1.BeginReceive(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(ReceiveData), RaspPi_1);
+                PC.BeginSend(packet, 0, packet.Length, SocketFlags.Broadcast, new AsyncCallback(SendData), PC);
             }
             catch (SocketException sockExcept)
             {
@@ -88,6 +89,16 @@ namespace Rasp_Pi_TCP
             Socket tempSocket = (Socket)callback.AsyncState;    // Temporary socket for ending the data receiving phase
             int dataReceived = tempSocket.EndReceive(callback); // Ends the data receiving phase on tempSocket
             Console.WriteLine("Data received.");                // Writes to the console that the data has been received
+            for (int i=0; i<6; i++)
+            {
+                variables[i] = (int)packet[i];
+            }
+            Console.WriteLine("Camera:    %d", variables[0]);
+            Console.WriteLine("Motor:     %d", variables[1]);
+            Console.WriteLine("Direction: %d", variables[2]);
+            Console.WriteLine("Steps:     %d", variables[3]);
+            Console.WriteLine("Position:  %d", variables[4]);
+            Console.WriteLine("Complete:  %d", variables[5]);
         }
 
         public static void SendData(IAsyncResult callback)
@@ -96,6 +107,5 @@ namespace Rasp_Pi_TCP
             int dataSent = tempSocket.EndSend(callback);     // Ends the data sending phase on tempSocket
             Console.WriteLine("Data sent.");                 // Writes to the console that the data has been sent
         }
-    }
     }
 }

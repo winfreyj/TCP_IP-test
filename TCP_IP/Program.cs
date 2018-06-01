@@ -55,7 +55,7 @@ namespace TCP_IP
                 packet[i] = (byte)variables[i];
             }
 
-            // Attepting to send data packet to Raspberry Pi
+            // Attepting to send data packet to the Raspberry Pi
             Console.WriteLine("Sending data packet to the Raspberry Pi.");
             try
             {
@@ -66,7 +66,7 @@ namespace TCP_IP
                 Console.WriteLine(sockExcept.ErrorCode.ToString());
             }
 
-            // Attempting to receive data packet from Raspberry Pi
+            // Attempting to receive data packet from the Raspberry Pi
             Console.WriteLine("Receiveing data packet from the Raspberry Pi.");
             try
             {
