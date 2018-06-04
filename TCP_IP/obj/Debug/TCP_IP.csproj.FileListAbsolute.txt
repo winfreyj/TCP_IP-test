@@ -4,3 +4,10 @@ c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\bin\D
 c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.csprojResolveAssemblyReference.cache
 c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.exe
 c:\users\joshua winfre\documents\visual studio 2017\Projects\TCP_IP\TCP_IP\obj\Debug\TCP_IP.pdb
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\obj\Debug\TCP_IP.csprojResolveAssemblyReference.cache
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\obj\Debug\TCP_IP.csproj.CoreCompileInputs.cache
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\obj\Debug\TCP_IP.exe
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\obj\Debug\TCP_IP.pdb
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\bin\Debug\TCP_IP.exe.config
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\bin\Debug\TCP_IP.exe
+C:\Users\Joshua\Source\Repos\TCP_IP-test\TCP_IP\bin\Debug\TCP_IP.pdb

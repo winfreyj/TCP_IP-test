@@ -10,6 +10,9 @@ namespace TCP_IP
 {
     class Program
     {
+        private static int[] variables = new int[6];
+        private static byte[] packet = new byte[6];
+
         static void Main()
         {
             Console.WriteLine("TCP_IP Test.");
@@ -39,7 +42,12 @@ namespace TCP_IP
              * varaibles[4] = assumed postion bit
              * varaibles[5] = complete bit
             */
-            int[] variables = { 1, 3, -1, 250, 0, 0 };
+            variables[0] = 1;
+            variables[1] = 3;
+            variables[2] = -1;
+            variables[3] = 250;
+            variables[4] = 0;
+            variables[5] = 0;
 
             /* Creating packet information array
              * packet[0] = selected camera bit
@@ -49,7 +57,7 @@ namespace TCP_IP
              * packet[4] = assumed postion bit
              * packet[5] = complete bit
             */
-            byte[] packet = new byte[6];
+            
             for(int i=0; i<6; i++)
             {
                 packet[i] = (byte)variables[i];
